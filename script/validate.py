@@ -41,7 +41,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -72,7 +72,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Cluster Region","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -103,7 +103,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Cluster Pool","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -134,7 +134,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check Node","https://cloud.google.com/kubernetes-engine/docs")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Node","https://cloud.google.com/kubernetes-engine/docs")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -145,7 +145,7 @@ class Activity():
         expected_result='developer-vpc'
         try:
             is_present = False
-            actual = 'GKE Cluster name is not '+ expected_result
+            actual = 'GKE Cluster Netowrk name is not '+ expected_result
             try:
                 service = discovery.build('container', 'v1', credentials=credentials)
                 request = service.projects().zones().clusters().list(projectId=project_id, zone='-')
@@ -165,7 +165,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Cluster Network","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -196,7 +196,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Subnet","https://cloud.google.com/kubernetes-engine/docs/")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
@@ -258,7 +258,7 @@ class Activity():
             if is_present==True:
                 test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
             else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Cluster","https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview?_ga=2.2930998.-76994253.1691030875")   
+                test_object.update_result(0,expected_result,actual,"Check GKE Deployment","https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster")   
 
         except Exception as e:    
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
