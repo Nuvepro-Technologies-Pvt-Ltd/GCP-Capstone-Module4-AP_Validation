@@ -280,7 +280,7 @@ def start_tests(credentials, project_id, args):
     challenge_test.testcase_check_Node_numbers(test_object,credentials,project_id)
     challenge_test.testcase_check_GKE_Network_name(test_object,credentials,project_id)
     challenge_test.testcase_check_GKE_SubNetwork_name(test_object,credentials,project_id)
-#    challenge_test.testcase_check_GKE_Deployment(test_object,credentials,project_id)
+    challenge_test.testcase_check_GKE_Deployment(test_object,credentials,project_id)
 
     json.dumps(test_object.result_final(),indent=4)
     return test_object.result_final()
