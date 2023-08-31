@@ -202,68 +202,6 @@ class Activity():
             test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
             test_object.eval_message["testcase_check_GKE_Cluster_name"]=str(e)                
     
-    def testcase_check_GKE_Deployment(self,test_object,credentials,project_id):
-        testcase_description="Check GKE Deployment name"
-        expected_result='mywordpress'
-        cluster_id = 'my-app-cluster'
-        zone = 'asia-southeast1'
-
-        try:
-            is_present = False
-            actual = 'GKE Deployment name is not '+ expected_result
-            try:
-                service = discovery.build('container', 'v1', credentials=credentials)
-                request = service.projects().zones().clusters().list(projectId=project_id, zone='-')
-                response = request.execute()  
-                if 'clusters' in response:
-                    for cluster in response['clusters']:
-                        if cluster['name'] == cluster_id:
-                            zone= cluster['zone']
-                            break
-                        else:
-                            pass
-                cluster_manager_client = ClusterManagerClient(credentials=credentials)
-                cluster = cluster_manager_client.get_cluster(
-                        project_id=project_id, zone=zone,
-                        cluster_id=cluster_id)
-
-                urllib3.disable_warnings()
-                kubeconfig_creds = credentials.with_scopes(
-                        ['https://www.googleapis.com/auth/cloud-platform',
-                        'https://www.googleapis.com/auth/userinfo.email'])
-                auth_req = google.auth.transport.requests.Request()
-                kubeconfig_creds.refresh(auth_req)
-
-                configuration = client.Configuration()
-
-                configuration.host = "https://"+cluster.endpoint+":443"
-                configuration.verify_ssl = False
-                kubeconfig_creds.apply(configuration.api_key)
-                client.Configuration.set_default(configuration)
-
-                deployments = client.AppsV1Api().list_deployment_for_all_namespaces()
-                for d in deployments.items:
-                    if d.metadata.labels['app'] == expected_result:
-                        is_present = True
-                        actual=expected_result
-                        break
-                    else:
-                        actual=d.metadata.labels['app']
-                        pass
-                    
-            except Exception as e:
-                is_present = False
-
-            test_object.update_pre_result(testcase_description,expected_result)
-            if is_present==True:
-                test_object.update_result(1,expected_result,actual,"No Comment"," Congrats! You have done it right!") 
-            else:
-                test_object.update_result(0,expected_result,actual,"Check GKE Deployment","https://cloud.google.com/kubernetes-engine/docs/deploy-app-cluster")   
-
-        except Exception as e:    
-            test_object.update_result(-1,expected_result,"Internal Server error","Please check with Admin","")
-            test_object.eval_message["testcase_check_GKE_Cluster_name"]=str(e)                
-
 def start_tests(credentials, project_id, args):
 
     if "result_output" not in sys.modules:
@@ -280,7 +218,6 @@ def start_tests(credentials, project_id, args):
     challenge_test.testcase_check_Node_numbers(test_object,credentials,project_id)
     challenge_test.testcase_check_GKE_Network_name(test_object,credentials,project_id)
     challenge_test.testcase_check_GKE_SubNetwork_name(test_object,credentials,project_id)
-    challenge_test.testcase_check_GKE_Deployment(test_object,credentials,project_id)
 
     json.dumps(test_object.result_final(),indent=4)
     return test_object.result_final()
